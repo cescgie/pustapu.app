@@ -22,9 +22,12 @@ class File_Model extends Model {
       return $this->_db->update("User_ga",$data,"UserId='$where'");
    }
    public function insert_uid($datas) {
-     $this->_db->insert('User_ga', $datas);
+      return $this->_db->insert('User_ga', $datas);
    }
    public function check_if_uid_exists($uid){
       return $this->_db->select("SELECT EXISTS(SELECT 1 FROM User_ga WHERE UserId = '".$uid."' LIMIT 1) as mycheck");
+   }
+   public function select_uid($uid){
+      return $this->_db->select("SELECT Hour, COUNT(*) hits FROM ga WHERE UserId='".$uid."' GROUP BY Hour HAVING hits > 1;");
    }
 }

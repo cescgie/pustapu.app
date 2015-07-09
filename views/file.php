@@ -34,7 +34,7 @@
                      '<tbody>
                         <tr>
                           <td>'.$i.'</td>
-                          <td><a href="'. DIR .'file/select_uid/'.$key['UserId'].'">'.$key['UserId'].'</a></td>
+                          <td><a href="'. DIR .'file/select_UserId/'.$key['UserId'].'">'.$key['UserId'].'</a></td>
                           <td>'.$key['Summe'].'</td>
                         </tr>
                       </tbody>';

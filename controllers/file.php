@@ -18,6 +18,7 @@ class File extends Controller {
       */
       //if (Session::get('username')){
         //$this->all_connection();
+      //$this->parse_ga();
       //}
       $data['sum_ga'] = $this->_model->summe_ga();
 
@@ -36,10 +37,10 @@ class File extends Controller {
       $this->_view->render('file', $data);
       $this->_view->render('footer');
    }
-   public function select_uid($uid){
+   /*public function select_uid($uid){
       echo $uid;
       //$data['uid_info'] = $this->_model->select_uid($uid);
-   }
+   }*/
    public function update_UserId($data){
       //print_r($data['0']);
       //print_r(count($data));
@@ -57,6 +58,16 @@ class File extends Controller {
           }
         }
       }
+   }
+   public function select_UserId($uid){
+      //echo $uid;
+      $info_UserId = $this->_model->select_uid($uid);
+      foreach ($info_UserId as $key) {
+        # code...
+        echo $key['Hour'];
+      }
+      $this->_view->render('header', $data);
+      $this->_view->render('footer');
    }
 
    public function all_connection(){
@@ -257,8 +268,8 @@ class File extends Controller {
       } // end of 'if($result==TRUE)'
   } // end of function
 
-  public function parse_ga($dir2) {
-      //$dir2 = 'uploads/ga/20150708/18/';
+  public function parse_ga() {
+      $dir2 = 'uploads/ga/20150708/19/';
       ini_set('max_execution_time', 0); 
       @set_time_limit(0);
 
