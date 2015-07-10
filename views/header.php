@@ -10,6 +10,8 @@ session_start();
    <title><?= $data['title'] . ' - ' . SITETITLE ?></title>
    <link rel="stylesheet" href="<?= URL::STYLES('bootstrap.min') ?>">
    <link rel="stylesheet" href="<?= URL::STYLES('style') ?>">
+   <script src="<?= URL::SCRIPTS('line') ?>"></script>
+   <script src="<?= URL::SCRIPTS('wz_jsgraphics') ?>"></script>
 </head>
 <body>
    <div class="container">

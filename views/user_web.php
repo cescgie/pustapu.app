@@ -36,6 +36,24 @@ if(!sizeof($data['info_user_web'] )){
         echo
           '</table>
         </div> <!-- panel panel-default -->';
+        echo
+        "
+
+        ";
 }
 
  ?>
+ <!-- graph code begins here-->
+<!-- Line Graph script-By Balamurugan S http://www.sbmkpm.com/ //-->
+<!-- Script featured/ available at Dynamic Drive code: http://www.dynamicdrive.com //-->
+<div id='lineCanvas' style='overflow: auto; position:relative;height:300px;width:400px;'></div>
+
+<script type='text/javascript'>
+
+var g = new line_graph();
+'<?php foreach ($data['info_user_web']  as $key){?>';
+g.add('<?php echo $key['Hour'] ?>', '<?php echo $key['Summe'] ?>');
+'<?php }?>';
+g.render('lineCanvas', 'Line Graph');
+
+</script>
