@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 09, 2015 at 02:24 AM
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Erstellungszeit: 09. Jul 2015 um 13:44
+-- Server-Version: 5.6.24
+-- PHP-Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,148 +17,43 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `kapau`
+-- Datenbank: `testkap`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `User_ga`
+-- Tabellenstruktur für Tabelle `userid_ga`
 --
 
-CREATE TABLE IF NOT EXISTS `User_ga` (
-  `id` int(10) unsigned NOT NULL,
-  `UserId` varchar(256) NOT NULL,
-  `Summe` int(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `userid_ga` (
+  `id` bigint(20) NOT NULL,
+  `UserId` char(16) NOT NULL,
+  `IpAddress` varchar(30) NOT NULL,
+  `DateEntered` datetime DEFAULT NULL,
+  `OsId` tinyint(4) NOT NULL,
+  `Summe` int(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `User_ga`
---
-
-INSERT INTO `User_ga` (`id`, `UserId`, `Summe`) VALUES
-(1, '559d490065641e4c', 192064),
-(2, '559d490065641e4f', 63269),
-(3, '559d490065641f44', 43094),
-(4, '559d4900656417c6', 25028),
-(5, '559d490065641a44', 11526),
-(6, '559d4900656417ab', 9247),
-(7, '559d490065641a24', 7995),
-(8, '5518137565641abe', 4120),
-(9, '559d49006564178d', 4491),
-(10, '53f2311865641760', 6470),
-(11, '559d490065641763', 4969),
-(12, '559d490065641f22', 5584),
-(13, '559d490065641ac0', 3214),
-(14, '559d49006e651e4c', 2921),
-(15, '559d490065641fb6', 3611),
-(16, '559d490065641aae', 2182),
-(17, '559d490065642124', 2471),
-(18, '5522918a65641abf', 1698),
-(19, '552e6f1a65640744', 1999),
-(20, '559d3b2b65641aae', 1473),
-(21, '559d490065642144', 1897),
-(22, '55780aca656416c0', 2359),
-(23, '559d3b0a65641a24', 2373),
-(24, '559d3af465641624', 1982),
-(25, '5558f37365641ac0', 2211),
-(26, '559d490065641f62', 1656),
-(27, '55999ae465641a24', 2491),
-(28, '54c11ead65641aae', 2142),
-(29, '559d3b2265641b44', 1230),
-(30, '551d1324656421c4', 1470),
-(31, '559a51b265641a44', 1993),
-(32, '5584f37f65641a44', 1886),
-(33, '5447d4a665641a24', 1479),
-(34, '55780ac265641aae', 1980),
-(35, '5587cebe65641a24', 1878),
-(36, '559d49006e6517c6', 1604),
-(37, '559d2d1b65641a24', 1559),
-(38, '5273d0376564169a', 1129),
-(39, '5402c81165641aa9', 1191),
-(40, '559be99c65641a44', 1466),
-(41, '54e32d5f65641a44', 1814),
-(42, '54a01b2665641a44', 1208),
-(43, '0000000000000000', 2122),
-(44, '54a1b2ee65641a24', 1499),
-(45, '559a51c765641a44', 1633),
-(46, '55803a0c65641a44', 1848),
-(47, '5481ac5365641a24', 1542),
-(48, '5408a8ad65641a44', 1308),
-(49, '52dc2ed465641e22', 1302),
-(50, '551902a265641a24', 1874),
-(51, '559b6b0065641a44', 1519),
-(52, '54c2b65165642144', 1756),
-(53, '559d490065641fc5', 1210),
-(54, '558d772f65641a44', 1384),
-(55, '5543b13865640e44', 1345),
-(56, '559d3b2165641aa8', 1150),
-(57, '5595ecaf65641ac0', 1843),
-(58, '549a647565641f60', 1131),
-(59, '55974c54656421c0', 1308),
-(60, '53e912d265641a24', 1377),
-(61, '54e1e9ef65641a24', 1340),
-(62, '559d490565641aae', 1098),
-(63, '559d4900656421c0', 1066),
-(64, '559d490065641924', 1063),
-(65, '559d3b2965641a24', 1071),
-(66, '5599003465641a24', 1193),
-(67, '5582506565641a44', 1499),
-(68, '55768f2565641ac0', 1286),
-(69, '5589122165641abf', 1187),
-(70, '55759fe76e650744', 1006),
-(71, '559d814065641e4c', 52476),
-(72, '559d814065641e4f', 22210),
-(73, '559d814065641f44', 16561),
-(74, '559d8140656417c6', 5981),
-(75, '559d814065641a24', 2351),
-(76, '559d8140656417ab', 2278),
-(77, '559d814065641f22', 2046),
-(78, '545003dd65641a44', 1268),
-(79, '559d81406564178d', 1172),
-(80, '54faf67765641a44', 1157),
-(81, '559d814065641fb6', 1131),
-(82, '556f0862656421c0', 1192),
-(83, '557c457665641ac0', 1153),
-(84, '54ff071465641aae', 1012),
-(85, '559d571065641e4c', 32914),
-(86, '559d571065641e4f', 12172),
-(87, '559d571065641f44', 8283),
-(88, '559d5710656417c6', 4345),
-(89, '559d571065641a44', 2556),
-(90, '524743596564178d', 1600),
-(91, '559d5710656417ab', 1511),
-(92, '559cbc8f65641a24', 1349),
-(93, '559d493665641aae', 1293),
-(94, '53c952a465641a24', 1259),
-(95, '559d571065641f22', 1258),
-(96, '559d571065641a24', 1247),
-(97, '5590b4b2656421c0', 1183),
-(98, '5535d967656421cc', 1095),
-(99, '559d490365641a24', 1094),
-(100, '5569fad765641a44', 1081),
-(101, '54a58b5465642124', 1021),
-(102, '559cf4d4656421a7', 1008);
-
---
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `User_ga`
+-- Indizes für die Tabelle `userid_ga`
 --
-ALTER TABLE `User_ga`
+ALTER TABLE `userid_ga`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `User_ga`
+-- AUTO_INCREMENT für Tabelle `userid_ga`
 --
-ALTER TABLE `User_ga`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=103;
+ALTER TABLE `userid_ga`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

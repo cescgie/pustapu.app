@@ -1,10 +1,10 @@
 <div class="container">
 	<?php echo Message::show(); ?>
-	<?php 
+	<?php
 
   //GA Information
   if (!sizeof($data['sum_ga'])) {
-      echo 
+      echo
       '<div class="alert alert-info">No Ga Data.</div>';
   }else{
       echo
@@ -12,14 +12,14 @@
           <!-- Default panel contents -->
           <div class="panel-heading">GA</div>';
           foreach ($data['sum_ga'] as $sum_ga){
-              echo 
+              echo
               '<p>'.$sum_ga['Summe_ga']. ' Eintrage</p>';
           }
           if (!sizeof($data['all_user_ga'])) {
-              echo 
+              echo
               '<div class="alert alert-info">No Ga Data.</div>';
           }else{
-            echo 
+            echo
               '<table border="1" style="text-align:center;">
                 <thead>
                   <tr>
@@ -30,7 +30,7 @@
                 </thead>';
                 foreach ($data['all_user_ga'] as $key){
                       $i +=1;
-                     echo 
+                     echo
                      '<tbody>
                         <tr>
                           <td>'.$i.'</td>
@@ -39,10 +39,41 @@
                         </tr>
                       </tbody>';
                 }
-                echo 
-                    '</table>';              
-          } 
+                echo
+                    '</table>';
+          }
+					if(!sizeof($data['all_info_user_ga'])){
+						echo
+						'<div class="alert alert-info">No Ga Data.</div>';
+						}else{
+							echo
+	              '<table border="1" style="text-align:center;">
+	                <thead>
+	                  <tr>
+	                    <th width="5%"></th>
+	                    <th width="20%">UserId</th>
+	                    <th width="20%">IpAddress</th>
+											<th width="20%">DateTime</th>
+											<th width="20%">Summe</th>
+	                  </tr>
+	                </thead>';
+	                foreach ($data['all_info_user_ga'] as $key){
+	                      $i +=1;
+	                     echo
+	                     '<tbody>
+	                        <tr>
+	                          <td>'.$i.'</td>
+	                          <td>'.$key['UserId'].'</a></td>
+	                          <td>'.$key['IpAddress'].'</td>
+														<td>'.$key['DateEntered'].'</td>
+														<td>'.$key['Summe'].'</td>
+	                        </tr>
+	                      </tbody>';
+	                }
+	                echo
+	                    '</table>';
+					}
       echo
-      '</div> <!-- panel panel-default -->';               
-  } 
+      '</div> <!-- panel panel-default -->';
+  }
   ?>
