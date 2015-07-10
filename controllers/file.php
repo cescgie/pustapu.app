@@ -24,6 +24,10 @@ class File extends Controller {
       //}
       $data['sum_ga'] = $this->_model->summe_ga();
       //$this->update_UserId_impression();
+      $data['available_date'] = $this->_model->check_available_date_infos();
+      //$data['all_info_user_ga'] = $this->_model->all_info_user_ga();
+
+
       //$data['all_user_ga'] = $this->_model->all_user_ga();
       //$data['all_info_user_ga'] = $this->_model->all_info_user_ga();
       //print_r($data['all_info_user_ga']);
@@ -44,13 +48,22 @@ class File extends Controller {
       *Call all views that will be show as index
       */
       $this->_view->render('header', $data);
-      $this->_view->render('file', $data);
+      $this->_view->render('date', $data);
       $this->_view->render('footer');
    }
-   /*public function select_uid($uid){
-      echo $uid;
-      //$data['uid_info'] = $this->_model->select_uid($uid);
-   }*/
+   public function select_datum($datum){
+      //echo $uid;
+      $data['datum_files'] = $this->_model->select_date_contains($datum);
+      $data['datum'] =$datum;
+      /*foreach ($data['datum_files'] as $key) {
+        # code...
+        echo $key['UserId'];
+        echo $key['Summe'];
+      }*/
+      $this->_view->render('header', $data);
+      $this->_view->render('userid', $data);
+      $this->_view->render('footer');
+   }
    public function update_UserId_impression(){
       $data['all_info_user_ga'] = $this->_model->all_info_user_ga();
       //print_r($data['0']);
@@ -73,14 +86,19 @@ class File extends Controller {
         }
       }
    }
-   public function select_UserId($uid){
-      //echo $uid;
-      $info_UserId = $this->_model->select_uid($uid);
-      foreach ($info_UserId as $key) {
+   public function select_UserId(){
+      //print_r('Test'.$_GET['UserId'].$_GET['Date']);
+      $data['UserId'] = $_GET['UserId'];
+      $data['datum'] = $_GET['Date'];
+      $data['info_user_web'] = $this->_model->select_UserId_to_WebsiteId($data['UserId'],$data['datum']);
+      /*foreach ($info_UserId as $key) {
         # code...
-        echo $key['Hour'];
-      }
+        echo '<pre>';
+        echo $key['WebsiteId']."_".$key['Hour']."_".$key['Summe'];
+        echo '</pre>';
+      }*/
       $this->_view->render('header', $data);
+      $this->_view->render('user_web',$data);
       $this->_view->render('footer');
    }
 

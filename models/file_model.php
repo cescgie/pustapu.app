@@ -31,9 +31,18 @@ class File_Model extends Model {
       return $this->_db->select("SELECT EXISTS(SELECT 1 FROM userid_ga WHERE UserId = '".$uid."' LIMIT 1) as mycheck");
    }
    public function select_uid($uid){
-      return $this->_db->select("SELECT Hour, COUNT(*) hits FROM ga WHERE UserId='".$uid."' GROUP BY Hour HAVING hits > 1;");
+      return $this->_db->select("SELECT WebsiteId, COUNT(*) hits FROM ga WHERE UserId='".$uid."' GROUP BY WebsiteId HAVING hits > 1;");
    }
    public function all_info_user_ga(){
      return $this->_db->select("SELECT UserId,Date(DateEntered) as DateEntered,count(*) as Summe FROM ga_2 GROUP BY UserId HAVING count(*) > 1000 ORDER BY count(*) DESC");
+   }
+   public function check_available_date_infos(){
+      return $this->_db->select("SELECT DateEntered as Available_Date FROM userid_ga group by DateEntered having count(*) >= 1");
+   }
+   public function select_date_contains($datum){
+     return $this->_db->select("SELECT UserId,Summe FROM `userid_ga` WHERE DateEntered = '".$datum."'");
+   }
+   public function select_UserId_to_WebsiteId($uid,$datum){
+     return $this->_db->select("SELECT WebsiteId,Hour(DateEntered) as Hour,COUNT(*) as Summe FROM ga_2 WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."' GROUP BY UserId,WebsiteId,Hour(DateEntered) HAVING COUNT(*) > 1000 ORDER BY COUNT(*) DESC");
    }
 }
