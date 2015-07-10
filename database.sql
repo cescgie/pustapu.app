@@ -104,8 +104,12 @@ CREATE TABLE IF NOT EXISTS `ga` (
   /*`DateEntered` int(11) NOT NULL,
   `Hour` tinyint(4) NOT NULL,
   `Minute` tinyint(4) NOT NULL,
+<<<<<<< HEAD
   `Second` tinyint(4) NOT NULL,*/
   `DateEntered` datetime DEFAULT NULL,
+=======
+  `Second` tinyint(4) NOT NULL,
+>>>>>>> origin/master
   #`AdServerIp` tinyint(4) NOT NULL,
   #`AdServerFarmId` tinyint(4) NOT NULL,
   `DMAId` tinyint(4) NOT NULL,

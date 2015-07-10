@@ -18,14 +18,24 @@ class File extends Controller {
       */
       //if (Session::get('username')){
         //$this->all_connection();
-      //$this->parse_ga();
+      $this->parse_ga("ga","uploads/ga/20150709/");
+      //$this->convert("uploads/ga/20150709/");
       //}
+<<<<<<< HEAD
       $data['sum_ga'] = $this->_model->summe_ga();
       //$this->update_UserId_info();
       //$data['all_user_ga'] = $this->_model->all_user_ga();
 
       //$data['all_info_user_ga'] = $this->_model->all_info_user_ga();
       //$this->update_UserId($data['all_user_ga']);
+=======
+                          
+      /*$data['sum_ga'] = $this->_model->summe_ga();
+
+      $data['all_user_ga'] = $this->_model->all_user_ga();
+
+      $this->update_UserId($data['all_user_ga']);*/
+>>>>>>> origin/master
       /*
       *Set recent date & time.
       */
@@ -124,7 +134,9 @@ class File extends Controller {
 
   public function convert($file_in)
   {
+    //echo $file_in;
     //This input should be from somewhere else, hard-coded in this example
+<<<<<<< HEAD
     $file_name = $file_in;
     // Raising this value may increase performance
     $buffer_size = 4096; // read 4kb at a time
@@ -142,6 +154,39 @@ class File extends Controller {
     fclose($out_file);
     gzclose($file);
     echo $out_file;
+=======
+    $folder = $file_in;
+    $handlefolder = opendir ($folder);
+    while ($file_hour = readdir ($handlefolder)) {
+      $handlefolder2 = opendir ($folder.$file_hour);
+      while ($file_name = readdir ($handlefolder2)){
+        /*echo '<pre>';
+        echo 'file_hour_'.$file_name;
+        echo "</pre>";*/
+        $files_to_convert = $folder.$file_hour."/".$file_name;
+        if (substr($files_to_convert, -3) == '.gz') {
+          // Raising this value may increase performance
+          $buffer_size = 4096; // read 4kb at a time
+          $out_file_name = str_replace('.gz', '', $files_to_convert);
+          // Open our files (in binary mode)
+          $file = gzopen($files_to_convert, 'rb');
+          $out_file = fopen($out_file_name, 'wb');
+          // Keep repeating until the end of the input file
+          while(!gzeof($file)) {
+            // Read buffer-size bytes
+            // Both fwrite and gzread and binary-safe
+            fwrite($out_file, gzread($file, $buffer_size));
+          }
+          // Files are done, close files
+          fclose($out_file);
+          gzclose($file);
+          echo $out_file;
+          //delete unconverted files
+          unlink($folder.$file_hour."/".$file_name);
+        }
+      }
+    }
+>>>>>>> origin/master
   }
 
   public function download_remote_file_with_curl($files_url, $save_to)
@@ -219,12 +264,21 @@ class File extends Controller {
 
                       $page3 = $result3['content'];
                       if($result3==TRUE){
+<<<<<<< HEAD
                           //create folder
                           if(!is_dir($dir .= "uploads/".$table."/".$subValue)){
                             mkdir($dir, 0777, true);
                             chmod($dir, 0777);
                           }
                           if(!is_dir($dir2 .= 'uploads/'.$table.'/'.$subValue.$subValue2)){
+=======
+                          //create folder 
+                          /*if(!is_dir($dir .= "uploads/".$table."/".$subValue)){ 
+                            mkdir($dir, 0777, true);
+                            chmod($dir, 0777);
+                          }*/
+                          if(!is_dir($dir2 .= 'uploads/'.$table.'/'.$subValue.$subValue2)){  
+>>>>>>> origin/master
                               mkdir($dir2, 0777, true);
                               chmod($dir2, 0777);
                           }
@@ -280,9 +334,16 @@ class File extends Controller {
       } // end of 'if($result==TRUE)'
   } // end of function
 
+<<<<<<< HEAD
   public function parse_ga() {
       $dir2 = 'uploads/ga/20150709/12/';
       ini_set('max_execution_time', 0);
+=======
+  public function parse_ga($table,$folder) {
+      //$dir2 = 'uploads/ga/20150708/19/';
+    //echo $table."__".$folder;
+      ini_set('max_execution_time', 0); 
+>>>>>>> origin/master
       @set_time_limit(0);
 
       $debugTimeStart = microtime(true);
@@ -365,10 +426,16 @@ class File extends Controller {
 
         // errorcode
         $errorcode = array('-2', '-3', '-4', '-6', '-7', '-10', '-23', '-26', '-98');
-        $handlefolder = opendir (getcwd()."/".$dir2);
-        while ($file = readdir ($handlefolder)) {
-          if (substr($file, -4) == '.bin') {
-            $handle = fopen(getcwd()."/".$dir2.$file, 'rb');
+        $handlefolder = opendir ($folder);
+        while ($file_hour = readdir ($handlefolder)) {
+          $handlefolder2 = opendir ($folder.$file_hour);
+          while ($file_name = readdir ($handlefolder2)){
+            $files_to_parse = $folder.$file_hour."/".$file_name;
+            if (substr($files_to_parse, -4) == '.bin') {
+                echo "<pre>";
+                echo "File_name_".$files_to_parse;
+                echo "</pre>";
+                $handle = fopen($files_to_parse, 'rb');
             while ($contents = fread($handle, $rowSize)) {
                 $tmpObject = array();
                 for ($i=0; $i<$rowLength; $i++) {
@@ -413,17 +480,29 @@ class File extends Controller {
                         $datas['BrowserLanguage'] =$tmpObject[21];
                         $datas['TLDId'] =$tmpObject[22];
                         $datas['MediaTypeId'] =$tmpObject[23];
+<<<<<<< HEAD
                           //Format DateTime
+=======
+>>>>>>> origin/master
                           $key['DateEntered'] =$tmpObject[26];
                           $key['Hour'] =$tmpObject[27];
                           $key['Minute'] =$tmpObject[28];
                           $key['Second'] =$tmpObject[29];
                           $retrieved = $key['DateEntered'];
                           $date = DateTime::createFromFormat('Ymd', $retrieved);
+<<<<<<< HEAD
                           $reformDate = $date->format('Y-m-d');
                           $DateTime = $reformDate .' '.$key['Hour'].':'.$key['Minute'].':'.$key['Second'];
                           //End of Format DateTime
                         $datas['DateEntered'] = $DateTime;
+=======
+                          $date_format = $date->format('Y-m-d');
+                          $datetime = $date_format.' '.$key['Hour'].':'.$key['Minute'].':'.$key['Second'];
+                          //echo $datetime."_";
+                          $date = strtotime($datetime);
+                          $date_full_format = date('Y-m-d H:i:s', $date);
+                        $datas['DateEntered'] = $date_full_format;
+>>>>>>> origin/master
                         //$datas['AdServerIp'] =$tmpObject[30];
                         //$datas['AdServerFarmId'] =$tmpObject[31];
                         $datas['DMAId'] =$tmpObject[32];
@@ -433,13 +512,25 @@ class File extends Controller {
                         $datas['IspId'] =$tmpObject[36];
                         $datas['CountTypeId'] =$tmpObject[37];
                         $datas['ConnectionTypeId'] =$tmpObject[38];
-                        $datas['in_bin'] = $file;
+                        $datas['in_bin'] =  $file_name;
                         $this->_model->_insert_ga($datas);
+<<<<<<< HEAD
             };//end of while ($contents = fread($handle, $rowSize))
             //rename bin folder in path uploads/
             @fclose($handle);
             //@chmod(getcwd()."/".$dir2.$file, 0666);
             //@rename(getcwd()."/".$dir2.$file, getcwd()."/".$dir2.$file.'.done');
+=======
+             };//end of while ($contents = fread($handle, $rowSize))
+            //rename bin folder in path uploads/
+            }
+            //rename bin folder in path uploads/
+            @fclose($handle);
+            if (substr($files_to_parse, -4) == '.bin'){
+              @chmod($files_to_parse, 0777);
+              @rename($files_to_parse, $files_to_parse.'.done');
+            }
+>>>>>>> origin/master
         };
         $debugTimeEnd = microtime(true);
       }
