@@ -17,25 +17,24 @@ class File extends Controller {
       *and parse them into to database.
       */
       //if (Session::get('username')){
-        //$this->all_connection();
-      $this->parse_ga("ga","uploads/ga/20150709/");
-      //$this->convert("uploads/ga/20150709/");
-      //}
-<<<<<<< HEAD
-      $data['sum_ga'] = $this->_model->summe_ga();
-      //$this->update_UserId_info();
-      //$data['all_user_ga'] = $this->_model->all_user_ga();
+      //$this->all_connection();
+      //$this->convert("uploads/ga/20150710/");
+      //$this->parse_ga("ga","uploads/ga/20150710/");
 
+      //}
+      $data['sum_ga'] = $this->_model->summe_ga();
+      //$this->update_UserId_impression();
+      //$data['all_user_ga'] = $this->_model->all_user_ga();
+      //$data['all_info_user_ga'] = $this->_model->all_info_user_ga();
+      //print_r($data['all_info_user_ga']);
       //$data['all_info_user_ga'] = $this->_model->all_info_user_ga();
       //$this->update_UserId($data['all_user_ga']);
-=======
-                          
+      //$this->update_UserId_info();
       /*$data['sum_ga'] = $this->_model->summe_ga();
 
       $data['all_user_ga'] = $this->_model->all_user_ga();
 
       $this->update_UserId($data['all_user_ga']);*/
->>>>>>> origin/master
       /*
       *Set recent date & time.
       */
@@ -52,23 +51,16 @@ class File extends Controller {
       echo $uid;
       //$data['uid_info'] = $this->_model->select_uid($uid);
    }*/
-   public function update_UserId_info(){
+   public function update_UserId_impression(){
       $data['all_info_user_ga'] = $this->_model->all_info_user_ga();
       //print_r($data['0']);
       //print_r(count($data));
       foreach ($data['all_info_user_ga'] as $key) {
         $daten['UserId'] = $key['UserId'];
-        $daten['IpAddress'] = $key['IpAddress'];
-          //Format DateTime
-          $retrieved = $key['DateEntered'];
-          $date = DateTime::createFromFormat('Ymd', $retrieved);
-          $reformDate = $date->format('Y-m-d');
-          $DateTime = $reformDate .' '.$key['Hour'].':'.$key['Minute'].':'.$key['Second'];
-          //End of Format DateTime
-        $daten['OsId'] = $key['OsId'];
-        $daten['DateEntered'] = $DateTime;
+        $daten['DateEntered'] = $key['DateEntered'];
         $daten['Summe'] = $key['Summe'];
-        echo $daten['UserId'].'-'.$daten['IpAddress'].'-'.$daten['DateEntered'].'-'.$daten['Summe'];
+        //echo $daten['DateEntered'];
+        //echo $daten['UserId'].'-'.$daten['IpAddress'].'-'.$daten['DateEntered'].'-'.$daten['Summe'];
         $data_check = $this->_model->check_if_uid_exists($key['UserId']);
         foreach($data_check as $key2){
           //echo $key2['mycheck']."__";
@@ -136,25 +128,6 @@ class File extends Controller {
   {
     //echo $file_in;
     //This input should be from somewhere else, hard-coded in this example
-<<<<<<< HEAD
-    $file_name = $file_in;
-    // Raising this value may increase performance
-    $buffer_size = 4096; // read 4kb at a time
-    $out_file_name = str_replace('.gz', '', $file_name);
-    // Open our files (in binary mode)
-    $file = gzopen($file_name, 'rb');
-    $out_file = fopen($out_file_name, 'wb');
-    // Keep repeating until the end of the input file
-    while(!gzeof($file)) {
-      // Read buffer-size bytes
-      // Both fwrite and gzread and binary-safe
-      fwrite($out_file, gzread($file, $buffer_size));
-    }
-    // Files are done, close files
-    fclose($out_file);
-    gzclose($file);
-    echo $out_file;
-=======
     $folder = $file_in;
     $handlefolder = opendir ($folder);
     while ($file_hour = readdir ($handlefolder)) {
@@ -186,7 +159,6 @@ class File extends Controller {
         }
       }
     }
->>>>>>> origin/master
   }
 
   public function download_remote_file_with_curl($files_url, $save_to)
@@ -264,21 +236,12 @@ class File extends Controller {
 
                       $page3 = $result3['content'];
                       if($result3==TRUE){
-<<<<<<< HEAD
                           //create folder
-                          if(!is_dir($dir .= "uploads/".$table."/".$subValue)){
-                            mkdir($dir, 0777, true);
-                            chmod($dir, 0777);
-                          }
-                          if(!is_dir($dir2 .= 'uploads/'.$table.'/'.$subValue.$subValue2)){
-=======
-                          //create folder 
-                          /*if(!is_dir($dir .= "uploads/".$table."/".$subValue)){ 
+                          /*if(!is_dir($dir .= "uploads/".$table."/".$subValue)){
                             mkdir($dir, 0777, true);
                             chmod($dir, 0777);
                           }*/
-                          if(!is_dir($dir2 .= 'uploads/'.$table.'/'.$subValue.$subValue2)){  
->>>>>>> origin/master
+                          if(!is_dir($dir2 .= 'uploads/'.$table.'/'.$subValue.$subValue2)){
                               mkdir($dir2, 0777, true);
                               chmod($dir2, 0777);
                           }
@@ -309,11 +272,11 @@ class File extends Controller {
                                             $filenames = $subValue3;
                                       }else{
                                             //Convert files(gz) to bin directly after put them in uploads directory
-                                            $this->convert(getcwd()."/".$dir2.$subValue3);
+                                            //$this->convert(getcwd()."/".$dir2.$subValue3);
                                             //rename
                                             $filenames = substr($subValue3, 0, -3);
                                             //delete gz file
-                                            unlink(getcwd()."/".$dir2.$subValue3);
+                                            //unlink(getcwd()."/".$dir2.$subValue3);
                                       }
                                   }else{
                                     $filenames = substr($subValue3, 0, -3);
@@ -324,7 +287,7 @@ class File extends Controller {
                                 }
                               }
                               //Parse files into Database
-                              $parse='parse_'.$table;
+                              //$parse='parse_'.$table;
                               //$this->$parse($dir2);
                           } // end of 'if($preg3==TRUE)'
                       } // enc of 'if($result3==TRUE)'
@@ -334,16 +297,10 @@ class File extends Controller {
       } // end of 'if($result==TRUE)'
   } // end of function
 
-<<<<<<< HEAD
-  public function parse_ga() {
-      $dir2 = 'uploads/ga/20150709/12/';
-      ini_set('max_execution_time', 0);
-=======
   public function parse_ga($table,$folder) {
       //$dir2 = 'uploads/ga/20150708/19/';
     //echo $table."__".$folder;
-      ini_set('max_execution_time', 0); 
->>>>>>> origin/master
+      ini_set('max_execution_time', 0);
       @set_time_limit(0);
 
       $debugTimeStart = microtime(true);
@@ -480,29 +437,19 @@ class File extends Controller {
                         $datas['BrowserLanguage'] =$tmpObject[21];
                         $datas['TLDId'] =$tmpObject[22];
                         $datas['MediaTypeId'] =$tmpObject[23];
-<<<<<<< HEAD
                           //Format DateTime
-=======
->>>>>>> origin/master
                           $key['DateEntered'] =$tmpObject[26];
                           $key['Hour'] =$tmpObject[27];
                           $key['Minute'] =$tmpObject[28];
                           $key['Second'] =$tmpObject[29];
                           $retrieved = $key['DateEntered'];
                           $date = DateTime::createFromFormat('Ymd', $retrieved);
-<<<<<<< HEAD
                           $reformDate = $date->format('Y-m-d');
                           $DateTime = $reformDate .' '.$key['Hour'].':'.$key['Minute'].':'.$key['Second'];
-                          //End of Format DateTime
-                        $datas['DateEntered'] = $DateTime;
-=======
-                          $date_format = $date->format('Y-m-d');
-                          $datetime = $date_format.' '.$key['Hour'].':'.$key['Minute'].':'.$key['Second'];
-                          //echo $datetime."_";
-                          $date = strtotime($datetime);
+                          $date = strtotime($DateTime);
                           $date_full_format = date('Y-m-d H:i:s', $date);
+                          //End of Format DateTime
                         $datas['DateEntered'] = $date_full_format;
->>>>>>> origin/master
                         //$datas['AdServerIp'] =$tmpObject[30];
                         //$datas['AdServerFarmId'] =$tmpObject[31];
                         $datas['DMAId'] =$tmpObject[32];
@@ -514,13 +461,7 @@ class File extends Controller {
                         $datas['ConnectionTypeId'] =$tmpObject[38];
                         $datas['in_bin'] =  $file_name;
                         $this->_model->_insert_ga($datas);
-<<<<<<< HEAD
-            };//end of while ($contents = fread($handle, $rowSize))
-            //rename bin folder in path uploads/
-            @fclose($handle);
-            //@chmod(getcwd()."/".$dir2.$file, 0666);
-            //@rename(getcwd()."/".$dir2.$file, getcwd()."/".$dir2.$file.'.done');
-=======
+
              };//end of while ($contents = fread($handle, $rowSize))
             //rename bin folder in path uploads/
             }
@@ -530,7 +471,6 @@ class File extends Controller {
               @chmod($files_to_parse, 0777);
               @rename($files_to_parse, $files_to_parse.'.done');
             }
->>>>>>> origin/master
         };
         $debugTimeEnd = microtime(true);
       }

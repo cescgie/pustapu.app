@@ -13,13 +13,13 @@ class File_Model extends Model {
      return $this->_db->select("SELECT Hour,Minute,Second,DateEntered FROM ga  WHERE UserId = '52ef308365641a23' ORDER BY id DESC LIMIT 1");
    }
    public function _insert_ga($datas) {
-     $this->_db->insert('ga', $datas);
+     $this->_db->insert('ga_2', $datas);
    }
    public function summe_ga(){
-      return $this->_db->select("SELECT count(*) as 'Summe_ga' from ga");
+      return $this->_db->select("SELECT count(*) as 'Summe_ga' from ga_2");
    }
    public function all_user_ga(){
-      return $this->_db->select("SELECT UserId,count(UserId) as Summe FROM ga GROUP BY UserId HAVING count(*) >1000 ORDER BY count(*) DESC");
+      return $this->_db->select("SELECT UserId,count(UserId) as Summe FROM ga_2 GROUP BY UserId HAVING count(*) >1000 ORDER BY count(*) DESC");
    }
    public function update_uid($data,$where){
       return $this->_db->update("userid_ga",$data,"UserId='$where'");
@@ -34,6 +34,6 @@ class File_Model extends Model {
       return $this->_db->select("SELECT Hour, COUNT(*) hits FROM ga WHERE UserId='".$uid."' GROUP BY Hour HAVING hits > 1;");
    }
    public function all_info_user_ga(){
-     return $this->_db->select("SELECT UserId,IpAddress,Hour,Minute,Second,DateEntered,OsId,count(UserId) as Summe FROM ga GROUP BY UserId,IpAddress,Hour,Minute,DateEntered,OsId ORDER BY count(*) DESC");
+     return $this->_db->select("SELECT UserId,Date(DateEntered) as DateEntered,count(*) as Summe FROM ga_2 GROUP BY UserId HAVING count(*) > 1000 ORDER BY count(*) DESC");
    }
 }

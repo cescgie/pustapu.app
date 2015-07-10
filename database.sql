@@ -80,14 +80,9 @@ CREATE TABLE IF NOT EXISTS `cf` (
 
 CREATE TABLE IF NOT EXISTS `ga` (
   `id` bigint(20) NOT NULL,
-  #`VersionId` tinyint(4) NOT NULL,
-  #`SequenceId` bigint(11) NOT NULL,
-  #`PlcNetworkId` mediumint(6) NOT NULL,
   `WebsiteId` bigint(11) NOT NULL,
   `PlacementId` bigint(11) NOT NULL,
-  #`CmgnNetworkId` mediumint(6) NOT NULL,
   `CampaignId` bigint(11) NOT NULL,
-  #`MasterCampaignId` bigint(11) NOT NULL,
   `BannerId` mediumint(4) NOT NULL,
   `BannerNumber` smallint(4) NOT NULL,
   `PaymentId` tinyint(4) NOT NULL,
@@ -96,22 +91,12 @@ CREATE TABLE IF NOT EXISTS `ga` (
   `IpAddress` varchar(30) NOT NULL,
   `UserId` char(16) NOT NULL,
   `OsId` tinyint(4) NOT NULL,
-  #`TagType` tinyint(4) NOT NULL,
   `BrowserId` tinyint(4) NOT NULL,
   `BrowserLanguage` tinyint(4) NOT NULL,
   `TLDId` smallint(4) NOT NULL,
   `MediaTypeId` tinyint(4) NOT NULL,
-  /*`DateEntered` int(11) NOT NULL,
-  `Hour` tinyint(4) NOT NULL,
-  `Minute` tinyint(4) NOT NULL,
-<<<<<<< HEAD
-  `Second` tinyint(4) NOT NULL,*/
   `DateEntered` datetime DEFAULT NULL,
-=======
   `Second` tinyint(4) NOT NULL,
->>>>>>> origin/master
-  #`AdServerIp` tinyint(4) NOT NULL,
-  #`AdServerFarmId` tinyint(4) NOT NULL,
   `DMAId` tinyint(4) NOT NULL,
   `CountryId` smallint(4) NOT NULL,
   `ZipCodeId` int(4) NOT NULL,
