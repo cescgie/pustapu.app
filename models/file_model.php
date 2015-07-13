@@ -42,7 +42,19 @@ class File_Model extends Model {
    public function select_date_contains($datum){
      return $this->_db->select("SELECT UserId,Summe FROM `userid_ga` WHERE DateEntered = '".$datum."'");
    }
+   public function all_UserId_to_WebsiteId(){
+     return $this->_db->select("SELECT UserId,WebsiteId,Hour(DateEntered) as Hour,date(DateEntered) as DateEntered,COUNT(*) as Summe FROM ga_2 GROUP BY UserId,WebsiteId,Hour(DateEntered),date(DateEntered) HAVING COUNT(*) > 1000 ORDER BY COUNT(*) DESC");
+   }
+   public function insert_uid_webid($data){
+     return $this->_db->insert("uid_webid",$data);
+   }
+   public function update_uid_webid($data,$uid,$webid,$hour,$datum){
+     return $this->_db->update("uid_webid",$data,"UserId='$where' AND WebsiteId='$webid' AND Hour='$hour' AND DateEntered='$datum'");
+   }
+   public function check_if_uid_webid_exists($uid,$webid,$hour,$datum){
+     return $this->_db->select("SELECT EXISTS(SELECT 1 FROM uid_webid WHERE UserId = '".$uid."' AND WebsiteId = '".$webid."' AND Hour = '".$hour."' AND DateEntered = '".$datum."' LIMIT 1) as mycheck");
+   }
    public function select_UserId_to_WebsiteId($uid,$datum){
-     return $this->_db->select("SELECT WebsiteId,Hour(DateEntered) as Hour,COUNT(*) as Summe FROM ga_2 WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."' GROUP BY UserId,WebsiteId,Hour(DateEntered) HAVING COUNT(*) > 1000 ORDER BY COUNT(*) DESC");
+     return $this->_db->select("SELECT * FROM uid_webid WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."'");
    }
 }

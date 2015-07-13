@@ -91,15 +91,42 @@ class File extends Controller {
       $data['UserId'] = $_GET['UserId'];
       $data['datum'] = $_GET['Date'];
       $data['info_user_web'] = $this->_model->select_UserId_to_WebsiteId($data['UserId'],$data['datum']);
-      /*foreach ($info_UserId as $key) {
+      /*foreach ($data['info_user_web'] as $key) {
         # code...
         echo '<pre>';
-        echo $key['WebsiteId']."_".$key['Hour']."_".$key['Summe'];
+        echo $key['WebsiteId']."_".$key['Hour']."_".$key['Summe']."_".$key['DateEntered'];
         echo '</pre>';
       }*/
       $this->_view->render('header', $data);
       $this->_view->render('user_web',$data);
       $this->_view->render('footer');
+   }
+   public function insert_UserId_WebsiteId(){
+      //print_r('Test'.$_GET['UserId'].$_GET['Date']);
+      $data['UserId'] = $_GET['UserId'];
+      $data['datum'] = $_GET['Date'];
+      $data['info_user_web'] = $this->_model->all_UserId_to_WebsiteId($data['UserId'],$data['datum']);
+      foreach ($data['info_user_web'] as $key) {
+        $daten['UserId'] = $key['UserId'];
+        $daten['WebsiteId'] = $key['WebsiteId'];
+        $daten['Hour'] = $key['Hour'];
+        $daten['DateEntered'] = $key['DateEntered'];
+        $daten['Summe'] = $key['Summe'];
+        echo '<pre>';
+        echo $key['UserId']."_".$key['WebsiteId']."_".$key['Hour']."_".$key['Summe']."_".$key['DateEntered'];
+        echo '</pre>';
+        //$insert = $this->_model->insert_uid_webid($daten);
+        $data_check = $this->_model->check_if_uid_webid_exists($key['UserId'],$key['WebsiteId'],$key['Hour'],$key['DateEntered']);
+        foreach($data_check as $key2){
+          //echo $key2['mycheck']."__";
+          if($key2['mycheck']==1){
+            $update = $this->_model->update_uid_webid($daten,$daten['UserId'],$daten['WebsiteId'],$daten['Hour'],$daten['DateEntered']);;
+          }else{
+            //echo $daten['UserId']."__";
+            $insert = $this->_model->insert_uid_webid($daten);
+          }
+        }
+      }
    }
 
    public function all_connection(){
