@@ -103,9 +103,7 @@ class File extends Controller {
    }
    public function insert_UserId_WebsiteId(){
       //print_r('Test'.$_GET['UserId'].$_GET['Date']);
-      $data['UserId'] = $_GET['UserId'];
-      $data['datum'] = $_GET['Date'];
-      $data['info_user_web'] = $this->_model->all_UserId_to_WebsiteId($data['UserId'],$data['datum']);
+      $data['info_user_web'] = $this->_model->all_UserId_to_WebsiteId();
       foreach ($data['info_user_web'] as $key) {
         $daten['UserId'] = $key['UserId'];
         $daten['WebsiteId'] = $key['WebsiteId'];
