@@ -12,6 +12,8 @@ session_start();
    <link rel="stylesheet" href="<?= URL::STYLES('style') ?>">
    <script src="<?= URL::SCRIPTS('line') ?>"></script>
    <script src="<?= URL::SCRIPTS('wz_jsgraphics') ?>"></script>
+   <script src="<?= URL::SCRIPTS('jquery-2.0.3.min') ?>"></script>
+
 </head>
 <body>
    <div class="container">

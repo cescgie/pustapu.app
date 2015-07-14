@@ -1,6 +1,9 @@
 <div class="container">
 	<?php echo Message::show(); ?>
-
+	<ol class="breadcrumb">
+		  <li><a href="<?= DIR ?>">Home</a></li>
+		  <li class="active">UserId (<?= $data['datum']?>)</li>
+		</ol>
 <?php
 if(!sizeof($data['datum_files'])){
   echo

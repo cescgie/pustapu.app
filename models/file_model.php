@@ -49,12 +49,18 @@ class File_Model extends Model {
      return $this->_db->insert("uid_webid",$data);
    }
    public function update_uid_webid($data,$uid,$webid,$hour,$datum){
-     return $this->_db->update("uid_webid",$data,"UserId='$where' AND WebsiteId='$webid' AND Hour='$hour' AND DateEntered='$datum'");
+     return $this->_db->update("uid_webid",$data,"UserId='$uid' AND WebsiteId='$webid' AND Hour='$hour' AND DateEntered='$datum'");
    }
    public function check_if_uid_webid_exists($uid,$webid,$hour,$datum){
      return $this->_db->select("SELECT EXISTS(SELECT 1 FROM uid_webid WHERE UserId = '".$uid."' AND WebsiteId = '".$webid."' AND Hour = '".$hour."' AND DateEntered = '".$datum."' LIMIT 1) as mycheck");
    }
    public function select_UserId_to_WebsiteId($uid,$datum){
      return $this->_db->select("SELECT * FROM uid_webid WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."'");
+   }
+   public function select_UserId_to_WebsiteId_One($uid,$datum,$webid){
+     return $this->_db->select("SELECT * FROM uid_webid WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."' AND WebsiteId = '".$webid."'");
+   }
+   public function select_UserId_to_WebsiteId_2($uid,$datum,$webid,$hour){
+     return $this->_db->select("SELECT hour,Summe FROM uid_webid WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."' AND WebsiteId = '".$webid."' AND Hour = '".$hour."' ORDER BY Hour ASC");
    }
 }

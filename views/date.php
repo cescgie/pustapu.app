@@ -1,5 +1,8 @@
 <div class="container">
 	<?php echo Message::show(); ?>
+	<ol class="breadcrumb">
+		<li><a href="<?= DIR ?>">Home</a></li>
+	</ol>
 	<?php
 
   //GA Information

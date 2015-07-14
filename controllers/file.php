@@ -126,7 +126,57 @@ class File extends Controller {
         }
       }
    }
+   public function select_WebsiteId(){
+     //print_r('Test'.$_GET['UserId'].$_GET['Date'].$_GET['WebsiteId']);
+     $data['UserId'] = $_GET['UserId'];
+     $data['datum'] = $_GET['Date'];
+     $data['WebsiteId'] = $_GET['WebsiteId'];
+     $data['info_user_web'] = $this->_model->select_UserId_to_WebsiteId($data['UserId'],$data['datum']);
+     $data['info_userid_webid'] = $this->_model->select_UserId_to_WebsiteId_One($data['UserId'],$data['datum'],$data['WebsiteId'] );
+     //print_r($data['info_userid_webid'][0]);
 
+     $datax=[
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],0 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],1 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],2 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],3 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],4 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],5 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],6 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],7 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],8 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],9 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],10 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],11 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],12 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],13 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],14 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],15 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],16 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],17 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],18 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],19 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],20 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],21 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],22 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],23 )
+
+     ];
+     $data['select_hour_summe'] = $datax;
+     /*foreach ($data['info_userid_webid'] as $key) {
+       $daten['UserId'] = $key['UserId'];
+       $daten['WebsiteId'] = $key['WebsiteId'];
+       $daten['Hour'] = $key['Hour'];
+       $daten['DateEntered'] = $key['DateEntered'];
+       $daten['Summe'] = $key['Summe'];
+       echo '<pre>';
+       echo $key['UserId']."_".$key['WebsiteId']."_".$key['Hour']."_".$key['Summe']."_".$key['DateEntered'];
+       echo '</pre>';
+     }*/
+     $this->_view->render('header', $data);
+     $this->_view->render('user_web',$data);
+     $this->_view->render('footer');
+   }
    public function all_connection(){
       $this->connect('ga');
    }
