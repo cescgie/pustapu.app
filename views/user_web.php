@@ -5,6 +5,11 @@
 			  <li class="#"><a href="<?= DIR .'/file/select_datum/'.$data['datum']?>">UserId (<?= $data['datum']?>)</a></li>
 				<li class="active">Info von UserId (<?= $data['UserId']?>)</li>
 			</ol>
+<table border="1"style="width:100%">
+  <tr style="text-align:center;">
+    <td>
+
+
 <?php
 if(!sizeof($data['info_user_web'] )){
   echo
@@ -15,7 +20,7 @@ if(!sizeof($data['info_user_web'] )){
         <!-- Default panel contents -->
         <div class="panel-heading">Impressions von UserId ( '.$data['UserId']. ' ) am ' .$data['datum'].' pro Stunde</div>';
     echo
-      '<table border="1" style="text-align:center;">
+      '<table border="1" style="text-align:center;width:100%;">
         <thead>
           <tr>
             <th width="5%"></th>
@@ -33,7 +38,7 @@ if(!sizeof($data['info_user_web'] )){
                 <tr>
                   <td>'.$i.'</td>
                   <td><a href="'. DIR .'file/select_WebsiteId?UserId='.$key['UserId'].'&Date='.$data['datum'].'&WebsiteId='.$key['WebsiteId'].'">'.$key['WebsiteId'].'</a></td>
-                  <td><a href="'. DIR .'file/select_ip?Ip='.$key['IpAddress'].'">'.$key['IpAddress'].'</a></td>
+                  <td><a href="'. DIR .'file/select_WebsiteId?Ip='.$key['IpAddress'].'&UserId='.$key['UserId'].'&Date='.$data['datum'].'&WebsiteId='.$key['WebsiteId'].'">'.$key['IpAddress'].'</a></td>
 									<td>'.$key['Hour'].'</td>
                   <td>'.$key['Summe'].'</td>
                 </tr>
@@ -49,11 +54,15 @@ if(!sizeof($data['info_user_web'] )){
 }
 
  ?>
+</td>
+ 	<td style="text-align:center">
  <!-- graph code begins here-->
 <!-- Line Graph script-By Balamurugan S http://www.sbmkpm.com/ //-->
 <!-- Script featured/ available at Dynamic Drive code: http://www.dynamicdrive.com //-->
-<div id='lineCanvas' style='overflow: auto; position:relative;height:300px;width:800px;'></div>
-
+		<div id='lineCanvas' style='text-align:center;overflow: auto; position:relative;height:300px;width:800px;'></div>
+	</td>
+</tr>
+</table>
 <script type='text/javascript'>
 
 var g = new line_graph();

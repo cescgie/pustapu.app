@@ -182,6 +182,12 @@ class File extends Controller {
      }*/
      $this->_view->render('header', $data);
      $this->_view->render('user_web',$data);
+     if($_GET['Ip']){
+       $data['Ip'] = $_GET['Ip'];
+       //echo $data['Ip'];
+       $data['info_Ip'] = $this->_model->select_IpAddress($data['Ip']);
+       $this->_view->render('ipaddress',$data);
+     }
      $this->_view->render('footer');
    }
    public function select_ip(){
