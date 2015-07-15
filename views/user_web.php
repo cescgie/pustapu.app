@@ -33,7 +33,7 @@ if(!sizeof($data['info_user_web'] )){
                 <tr>
                   <td>'.$i.'</td>
                   <td><a href="'. DIR .'file/select_WebsiteId?UserId='.$key['UserId'].'&Date='.$data['datum'].'&WebsiteId='.$key['WebsiteId'].'">'.$key['WebsiteId'].'</a></td>
-                  <td>'.$key['IpAddress'].'</td>
+                  <td><a href="'. DIR .'file/select_ip?Ip='.$key['IpAddress'].'">'.$key['IpAddress'].'</a></td>
 									<td>'.$key['Hour'].'</td>
                   <td>'.$key['Summe'].'</td>
                 </tr>

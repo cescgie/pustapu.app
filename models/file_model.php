@@ -66,4 +66,7 @@ class File_Model extends Model {
    public function check_strange($uid,$datum){
      return $this->_db->select("SELECT * FROM uid_webid WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."' group by Hour");
    }
+   public function select_IpAddress($ip){
+     return $this->_db->select("SELECT IpAddress,UserId, WebsiteId, date(DateEntered) as DateEntered FROM uid_webid WHERE IpAddress='".$ip."' GROUP BY UserId");
+   }
 }
