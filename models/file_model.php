@@ -63,4 +63,7 @@ class File_Model extends Model {
    public function select_UserId_to_WebsiteId_2($uid,$datum,$webid,$hour){
      return $this->_db->select("SELECT hour,Summe FROM uid_webid WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."' AND WebsiteId = '".$webid."' AND Hour = '".$hour."' ORDER BY Hour ASC");
    }
+   public function check_strange($uid,$datum){
+     return $this->_db->select("SELECT * FROM uid_webid WHERE UserId = '".$uid."' AND Date(DateEntered) = '".$datum."' group by Hour");
+   }
 }
