@@ -20,6 +20,7 @@ if(!sizeof($data['info_user_web'] )){
           <tr>
             <th width="5%"></th>
             <th width="20%"  style="text-align:center;">WebsiteId</th>
+						<th width="20%"  style="text-align:center;">IpAddress</th>
             <th width="20%"  style="text-align:center;">Hour</th>
             <th width="20%"  style="text-align:center;">Impressions</th>
 
@@ -32,7 +33,8 @@ if(!sizeof($data['info_user_web'] )){
                 <tr>
                   <td>'.$i.'</td>
                   <td><a href="'. DIR .'file/select_WebsiteId?UserId='.$key['UserId'].'&Date='.$data['datum'].'&WebsiteId='.$key['WebsiteId'].'">'.$key['WebsiteId'].'</a></td>
-                  <td>'.$key['Hour'].'</td>
+                  <td>'.$key['IpAddress'].'</td>
+									<td>'.$key['Hour'].'</td>
                   <td>'.$key['Summe'].'</td>
                 </tr>
               </tbody>';

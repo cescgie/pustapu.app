@@ -113,11 +113,12 @@ class File extends Controller {
       foreach ($data['info_user_web'] as $key) {
         $daten['UserId'] = $key['UserId'];
         $daten['WebsiteId'] = $key['WebsiteId'];
+        $daten['IpAddress'] = $key['IpAddress'];
         $daten['Hour'] = $key['Hour'];
         $daten['DateEntered'] = $key['DateEntered'];
         $daten['Summe'] = $key['Summe'];
         echo '<pre>';
-        echo $key['UserId']."_".$key['WebsiteId']."_".$key['Hour']."_".$key['Summe']."_".$key['DateEntered'];
+        echo $key['UserId']."_".$key['WebsiteId']."_".$key['IpAddress']."_".$key['Hour']."_".$key['Summe']."_".$key['DateEntered'];
         echo '</pre>';
         //$insert = $this->_model->insert_uid_webid($daten);
         $data_check = $this->_model->check_if_uid_webid_exists($key['UserId'],$key['WebsiteId'],$key['Hour'],$key['DateEntered']);

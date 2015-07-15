@@ -43,7 +43,7 @@ class File_Model extends Model {
      return $this->_db->select("SELECT UserId,Summe FROM `userid_ga` WHERE DateEntered = '".$datum."'");
    }
    public function all_UserId_to_WebsiteId(){
-     return $this->_db->select("SELECT UserId,WebsiteId,Hour(DateEntered) as Hour,date(DateEntered) as DateEntered,COUNT(*) as Summe FROM ga_2 GROUP BY UserId,WebsiteId,Hour(DateEntered),date(DateEntered) HAVING COUNT(*) > 1000 ORDER BY COUNT(*) DESC");
+     return $this->_db->select("SELECT UserId,WebsiteId,IpAddress,Hour(DateEntered) as Hour,date(DateEntered) as DateEntered,COUNT(*) as Summe FROM ga_2 GROUP BY UserId,WebsiteId,Hour(DateEntered),date(DateEntered) HAVING COUNT(*) > 1000 ORDER BY COUNT(*) DESC");
    }
    public function insert_uid_webid($data){
      return $this->_db->insert("uid_webid",$data);
