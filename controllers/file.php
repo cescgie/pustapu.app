@@ -74,17 +74,26 @@ class File extends Controller {
       $data['all_info_user_ga'] = $this->_model->all_info_user_ga();
       //print_r($data['0']);
       //print_r(count($data));
+      //$data['check'] = $this->_model->check_strange($key['UserId'],$datum);
       foreach ($data['all_info_user_ga'] as $key) {
         $daten['UserId'] = $key['UserId'];
         $daten['DateEntered'] = $key['DateEntered'];
         $daten['Summe'] = $key['Summe'];
+        $data['Uhrzeit'] = $this->_model->check_strange($key['UserId'],$key['DateEntered']);
+        /*echo '<pre>';
+        print_r($daten['UserId']."_".$daten['Summe']."_".count($daten['Uhrzeit']));
+        echo '</pre>';*/
         //echo $daten['DateEntered'];
         //echo $daten['UserId'].'-'.$daten['IpAddress'].'-'.$daten['DateEntered'].'-'.$daten['Summe'];
-        $data_check = $this->_model->check_if_uid_exists($key['UserId']);
+        $daten['Uhrzeit'] = count($data['Uhrzeit']);
+        /*echo '<pre>';
+        print_r($daten['UserId']."_".$daten['Summe']."_".$daten['Uhrzeit']);
+        echo '</pre>';*/
+        $data_check = $this->_model->check_if_uid_exists($key['UserId'],$key['DateEntered']);
         foreach($data_check as $key2){
           //echo $key2['mycheck']."__";
           if($key2['mycheck']==1){
-            $update = $this->_model->update_uid($daten,$daten['UserId']);
+            $update = $this->_model->update_uid($daten,$daten['UserId'],$daten['DateEntered']);
           }else{
             //echo $daten['UserId']."__";
             $insert = $this->_model->insert_uid($daten);

@@ -21,14 +21,14 @@ class File_Model extends Model {
    public function all_user_ga(){
       return $this->_db->select("SELECT UserId,count(UserId) as Summe FROM ga_2 GROUP BY UserId HAVING count(*) >1000 ORDER BY count(*) DESC");
    }
-   public function update_uid($data,$where){
-      return $this->_db->update("userid_ga",$data,"UserId='$where'");
+   public function update_uid($data,$uid,$datum){
+      return $this->_db->update("userid_ga",$data,"UserId='$uid' AND DateEntered = '$datum'");
    }
    public function insert_uid($datas) {
       return $this->_db->insert('userid_ga', $datas);
    }
-   public function check_if_uid_exists($uid){
-      return $this->_db->select("SELECT EXISTS(SELECT 1 FROM userid_ga WHERE UserId = '".$uid."' LIMIT 1) as mycheck");
+   public function check_if_uid_exists($uid,$datum){
+      return $this->_db->select("SELECT EXISTS(SELECT 1 FROM userid_ga WHERE UserId = '".$uid."' AND DateEntered = '".$datum."' LIMIT 1) as mycheck");
    }
    public function select_uid($uid){
       return $this->_db->select("SELECT WebsiteId, COUNT(*) hits FROM ga WHERE UserId='".$uid."' GROUP BY WebsiteId HAVING hits > 1;");
