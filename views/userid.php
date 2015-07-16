@@ -23,7 +23,7 @@ if(!sizeof($data['datum_files'])){
 						<th width="10%" style="text-align:center;">Anzahl der Uhrzeit</th>
           </tr>
         </thead>';
-				$j = 0;
+				//$j = 0;
         foreach ($data['datum_files'] as $key){
               $i +=1;
              echo
@@ -31,16 +31,11 @@ if(!sizeof($data['datum_files'])){
                 <tr>
                   <td>'.$i.'</td>
                   <td><a href="'. DIR .'file/select_UserId?UserId='.$key['UserId'].'&Date='.$data['datum'].'">'.$key['UserId'].'</a></td>
-                  <td>'.$key['Summe'].'</td>';
-									if(count($data['check'][$j])==1){
-										echo '<td>1</td>';
-									}else{
-										echo '<td>'.count($data['check'][$j]).'</td>';
-									}
-								echo
-                '</tr>
+                  <td>'.$key['Summe'].'</td>
+									<td>'.$key['Uhrzeit'].'</td>
+								</tr>
               </tbody>';
-							$j = $j+1;
+							//$j = $j+1;
         }
         echo
           '</table>

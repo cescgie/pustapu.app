@@ -56,10 +56,10 @@ class File extends Controller {
       $data['datum_files'] = $this->_model->select_date_contains($datum);
       $data['datum'] =$datum;
 
-      foreach ($data['datum_files'] as $key) {
+      /*foreach ($data['datum_files'] as $key) {
         # code...
         $data['check'][] = $this->_model->check_strange($key['UserId'],$datum);
-      }
+      }*/
       //print_r($data['check']);
       /*foreach ($data['check'] as $key) {
         # code...
