@@ -12,7 +12,7 @@ if(!sizeof($data['datum_files'])){
     echo
     '<div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading">UserId mit Impressions > 1000 in '.$data['datum'].'</div>';
+        <div class="panel-heading">Verdächtige UserId am '.$data['datum'].'</div>';
     echo
       '<table border="1" style="text-align:center;">
         <thead>
@@ -20,22 +20,25 @@ if(!sizeof($data['datum_files'])){
             <th width="5%"></th>
             <th width="20%"  style="text-align:center;">UserId</th>
             <th width="20%"  style="text-align:center;">Impressions</th>
-						<th width="10%" style="text-align:center;">Anzahl der Uhrzeit</th>
+						<!--<th width="10%" style="text-align:center;">Anzahl der Uhrzeit</th>-->
           </tr>
         </thead>';
-				//$j = 0;
+				$i = 1;
         foreach ($data['datum_files'] as $key){
-              $i +=1;
+              //$i +=1;
              echo
              '<tbody>
-                <tr>
-                  <td>'.$i.'</td>
+                <tr>';
+								if($key['UserId']!='0000000000000000' && $key['Uhrzeit']>20){
+									echo
+                  '<td>'.$i.'</td>
                   <td><a href="'. DIR .'file/select_UserId?UserId='.$key['UserId'].'&Date='.$data['datum'].'">'.$key['UserId'].'</a></td>
-                  <td>'.$key['Summe'].'</td>
-									<td>'.$key['Uhrzeit'].'</td>
-								</tr>
+                  <td>'.$key['Summe'].'</td>';
+								}
+								echo
+								'</tr>
               </tbody>';
-							//$j = $j+1;
+							$i = $i+1;
         }
         echo
           '</table>

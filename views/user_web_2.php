@@ -30,18 +30,15 @@ if(!sizeof($data['info_user_web'] )){
 
           </tr>
         </thead>';
-				$i = 1;
+
+        $i =0;
         foreach ($data['info_user_web']  as $key){
              echo
              '<tbody>
                 <tr>
-                  <td>'.$i.'</td>';
-									if($data['true']){
-										echo '<td><a href="'. DIR .'file/select_WebsiteId_2?UserId='.$key['UserId'].'&Date='.$data['datum'].'&WebsiteId='.$key['WebsiteId'].'&IpAddress='.$key['IpAddress'].'">'.$key['WebsiteId'].'</a></td>';
-									}else{
-                  	echo '<td><a href="'. DIR .'file/select_WebsiteId?UserId='.$key['UserId'].'&Date='.$data['datum'].'&WebsiteId='.$key['WebsiteId'].'&IpAddress='.$key['IpAddress'].'">'.$key['WebsiteId'].'</a></td>';
-									}
-									echo '<td><a href="'. DIR .'file/select_ip?Ip='.$key['IpAddress'].'">'.$key['IpAddress'].'</a></td>';
+                  <td>'.$i.'</td>
+                  <td><a href="'. DIR .'file/select_WebsiteId_2?UserId='.$key['UserId'].'&Date='.$data['datum'].'&WebsiteId='.$key['WebsiteId'].'&IpAddress='.$key['IpAddress'].'">'.$key['WebsiteId'].'</a></td>
+									<td><a href="'. DIR .'file/select_ip?Ip='.$key['IpAddress'].'">'.$key['IpAddress'].'</a></td>';
 									if(strlen($key['Hour'])==1){
 										echo
 									'<td>0'.$key['Hour'].'</td>';
@@ -58,66 +55,8 @@ if(!sizeof($data['info_user_web'] )){
         echo
           '</table>
         </div> <!-- panel panel-default -->';
-				/*print_r($data['info_userid_webid'][5]);
-				if($data['info_userid_webid'][10]['Hour']==10){
-					print_r("_test_".$data['info_userid_webid'][0]['Hour']);
-				}else{
-					print_r("_no_".$data['info_userid_webid'][10]);
-				}*/
-				//for ($i=0; $i < count( $data['select_hour_summer']); $i++) {
-
-				//print_r($data['select_hour_summe']);
-
-				//print_r($data['select_hour_summe'][1][0]['Summe']);
-
-				//}
-					/*foreach ($data['select_hour_summe'] as $key) {
-	        echo '<pre>';
-	        if ($key) {
-	          # code...
-	          print_r($key[0]);
-	        }else{
-	          print_r(0);
-	        }
-	        echo '</pre>';
-	      }*/
 }
-/*
-'<?php for($i=0;$i<24;$i++){?>';
-g.add('<?php
-if($data['info_userid_webid'][$i]['Hour']==$i){
-	echo $data['info_userid_webid'][$i][$i];
-}else{
-	echo '0';
-}
- ?>', '<?php echo "0";?>');
- '<?php}?>';
 
-
-'<?php foreach ($data['info_userid_webid']  as $key){?>';
-g.add('<?php
-if(strlen($key['Hour'])==1){
-	echo '0'.$key['Hour'];
-}else{
-	echo $key['Hour'];
-}
- ?>', '<?php echo $key['Summe'] ?>');
-'<?php
-}?>';
-
-
-OK
-'<?php for ($i=0; $i < count( $data['select_hour_summe']); $i++){?>';
-g.add('<?php echo $i ?>',
-'<?php
-if($data['select_hour_summe']){
-	echo $data['select_hour_summe'][$i][0]['Summe'];
-}else{
-	echo "0";
-}?>');
-'<?php
-}?>';
-*/
  ?>
  <!-- graph code begins here-->
 <!-- Line Graph script-By Balamurugan S http://www.sbmkpm.com/ //-->

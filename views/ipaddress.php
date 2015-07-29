@@ -1,5 +1,8 @@
-
-</br></br>
+<div class="container">
+	<?php echo Message::show(); ?>
+	<ol class="breadcrumb">
+			  <li><a href="<?= DIR ?>">Home</a></li>
+	</ol>
 <?php
 if(!sizeof($data['info_Ip'])){
   echo
@@ -8,7 +11,7 @@ if(!sizeof($data['info_Ip'])){
   echo
   '<div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">IpAddress '.$data['Ip'].'</div>';
+      <div class="panel-heading">IpAddress : '.$data['Ip'].'</div>';
   echo
     '<table border="1" style="text-align:center;">
       <thead>
@@ -17,6 +20,7 @@ if(!sizeof($data['info_Ip'])){
           <th width="20%"  style="text-align:center;">UserId</th>
           <th width="20%"  style="text-align:center;">WebsiteId</th>
           <th width="20%"  style="text-align:center;">Datum</th>
+
         </tr>
       </thead>';
       foreach ($data['info_Ip']  as $key){
@@ -25,7 +29,7 @@ if(!sizeof($data['info_Ip'])){
            '<tbody>
               <tr>
                 <td>'.$i.'</td>
-                <td>'.$key['UserId'].'</td>
+								<td><a href="'. DIR .'file/select_UserId_2?UserId='.$key['UserId'].'&Date='.$key['DateEntered'].'&IpAddress='.$data['Ip'].'&WebsiteId='.$key['WebsiteId'].'">'.$key['UserId'].'</a></td>
                 <td>'.$key['WebsiteId'].'</td>
                 <td>'.$key['DateEntered'].'</td>
               </tr>
@@ -34,4 +38,13 @@ if(!sizeof($data['info_Ip'])){
       echo
         '</table>
       </div> <!-- panel panel-default -->';
+echo
+	'<div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Alle Userid von '.$data['Ip'].'</div>';
+      foreach ($data['uid']  as $key){
+				echo
+				'<ul><li><p>'.$key['UserId'].'</p></li></ul>';
+			}
+	echo '</div> <!-- panel panel-default -->';
   }

@@ -4,7 +4,7 @@ class Database extends PDO {
 
 	function __construct() {
 		try {
-			parent::__construct(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+			parent::__construct(DB_TYPE . ':host=' . DB_HOST . ';port=' . DB_HOST_PORT . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 			$this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 		} catch(PDOException $e) {
@@ -65,7 +65,7 @@ class Database extends PDO {
 
 	public function select2($table, $where, $array = array(), $fetchMode = PDO::FETCH_ASSOC) {
 		ksort($where);
-		
+
 		$fieldDetails = NULL;
 		$i = 0;
 		foreach($where as $key => $value) {

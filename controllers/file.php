@@ -116,6 +116,27 @@ class File extends Controller {
       $this->_view->render('user_web',$data);
       $this->_view->render('footer');
    }
+   public function select_UserId_2(){
+    $data['UserId'] = $_GET['UserId'];
+    $data['title'] = 'UserId : '.$data['UserId'];
+
+    $data['datum'] = $_GET['Date'];
+    $data['IpAddress'] = $_GET['IpAddress'];
+    $data['WebsiteId'] = $_GET['WebsiteId'];
+    $data['true'] = TRUE;
+    //echo $data['IpAddress']."_".$data['WebsiteId'];
+    $data['info_user_web'] = $this->_model->select_UserId_to_WebsiteId_Ip($data['UserId'],$data['WebsiteId'],$data['datum'],$data['IpAddress']);
+    //print_r($data['info_user_web']);
+    /*foreach ($data['info_user_web'] as $key) {
+      # code...
+      echo '<pre>';
+      echo $key['WebsiteId']."_".$key['Hour']."_".$key['Summe']."_".$key['DateEntered']."_".$data['IpAddress'];
+      echo '</pre>';
+    }*/
+    $this->_view->render('header', $data);
+    $this->_view->render('user_web',$data);
+    $this->_view->render('footer');
+  }
    public function insert_UserId_WebsiteId(){
       //print_r('Test'.$_GET['UserId'].$_GET['Date']);
       $data['info_user_web'] = $this->_model->all_UserId_to_WebsiteId();
@@ -142,6 +163,7 @@ class File extends Controller {
         }
       }
    }
+   /*
    public function select_WebsiteId(){
      //print_r('Test'.$_GET['UserId'].$_GET['Date'].$_GET['WebsiteId']);
      $data['UserId'] = $_GET['UserId'];
@@ -188,7 +210,7 @@ class File extends Controller {
        echo '<pre>';
        echo $key['UserId']."_".$key['WebsiteId']."_".$key['Hour']."_".$key['Summe']."_".$key['DateEntered'];
        echo '</pre>';
-     }*/
+     }
      $this->_view->render('header', $data);
      $this->_view->render('user_web',$data);
      if($_GET['Ip']){
@@ -198,17 +220,113 @@ class File extends Controller {
        $this->_view->render('ipaddress',$data);
      }
      $this->_view->render('footer');
+   }*/
+   public function select_WebsiteId(){
+     //print_r('Test'.$_GET['UserId'].$_GET['Date'].$_GET['WebsiteId']);
+     $data['UserId'] = $_GET['UserId'];
+     $data['datum'] = $_GET['Date'];
+     $data['WebsiteId'] = $_GET['WebsiteId'];
+     $data['title'] = 'WebsiteId : '.$data['WebsiteId'];
+
+     $data['IpAddress'] = $_GET['IpAddress'];
+     $data['info_user_web'] = $this->_model->select_UserId_to_WebsiteId($data['UserId'],$data['datum']);
+     //$data['info_userid_webid'] = $this->_model->select_UserId_to_WebsiteId_One($data['UserId'],$data['datum'],$data['WebsiteId'] );
+     $data['ip'] = $data['IpAddress'];
+     $data['webid'] = $data['WebsiteId'];
+     $datax=[
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],0 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],1 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],2 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],3 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],4 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],5 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],6 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],7 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],8 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],9 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],10 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],11 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],12 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],13 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],14 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],15 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],16 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],17 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],18 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],19 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],20 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],21 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],22 ),
+         $saw=$this->_model->select_UserId_to_WebsiteId_2($data['UserId'],$data['datum'],$data['WebsiteId'],$data['IpAddress'],23 )
+
+     ];
+     $data['select_hour_summe'] = $datax;
+     /*echo '<pre>';
+     print_r($data['select_hour_summer']);
+     echo '</pre>';*/
+     /*for ($i=0; $i < count( $data['select_hour_summer']); $i++) {
+       # code
+       echo '<pre>';
+       if ($data['select_hour_summer'][$i]) {
+         # code...
+         print_r($data['select_hour_summer'][$i]);
+       }else{
+         print_r(0);
+       }
+       echo '</pre>';
+     }*/
+     /*foreach ($data['select_hour_summer'] as $key) {
+       echo '<pre>';
+       if ($key) {
+         # code...
+         print_r($key[0]);
+       }else{
+         print_r(0);
+       }
+       echo '</pre>';
+     }*/
+     //print_r($data['info_userid_webid_2']);
+     //foreach ($data['info_userid_webid_2'] as $key) {
+       //$daten['UserId'] = $key['UserId'];
+       /*for($i=0;$i<24;$i++){
+         //echo $i."__";
+         if($data['info_userid_webid_2'][$i]['Hour']==$i){
+           echo '<pre>';
+           echo $data['info_userid_webid_2'][$i]['Hour'].",".$data['info_userid_webid_2'][$i]['Summe']."__";
+           echo '</pre>';
+         }else{
+           echo '<pre>';
+           echo $i.",0"."--";
+           echo '</pre>';
+         }
+       //}
+       $daten['WebsiteId'] = $key['WebsiteId'];
+       $daten['Hour'] = $key['Hour'];
+       //$daten['DateEntered'] = $key['DateEntered'];
+       $daten['Summe'] = $key['Summe'];
+       /*echo '<pre>';
+       //echo $key['UserId']."_".$key['WebsiteId']."_".$key['Hour']."_".$key['Summe'];
+       echo $key['WebsiteId']."_".$key['Hour']."_".$key['Summe'];
+       echo '</pre>';*/
+     //}
+     $this->_view->render('header', $data);
+     $this->_view->render('user_web',$data);
+     $this->_view->render('footer');
    }
    public function select_ip(){
-     $data['Ip'] = $_GET['Ip'];
-     //echo $data['Ip'];
+    $data['Ip'] = $_GET['Ip'];
+    $data['title'] = 'IpAddress : '.$data['Ip'];
 
-     $data['info_Ip'] = $this->_model->select_IpAddress($data['Ip']);
-     //print_r($data['info_Ip']);
-     //header("Location: ".$_SERVER['HTTP_REFERER']);
-     $this->_view->render('header', $data);
-     $this->_view->render('ipaddress',$data);
-     $this->_view->render('footer');
+    //echo $data['Ip'];
+
+    $data['info_Ip'] = $this->_model->select_IpAddress($data['Ip']);
+
+    $data['uid'] = $this->_model->select_uid_from_ip($data['Ip']);
+    //print_r($data['uid']);
+    //header("Location: ".$_SERVER['HTTP_REFERER']);
+    $this->_view->render('header', $data);
+    $this->_view->render('ipaddress',$data);
+    $this->_view->render('footer');
    }
    public function all_connection(){
       $this->connect('ga');
