@@ -40,7 +40,7 @@ class File_Model extends Model {
       return $this->_db->select("SELECT DateEntered as Available_Date FROM userid_ga group by DateEntered having count(*) >= 1");
    }
    public function select_date_contains($datum){
-     return $this->_db->select("SELECT UserId,Summe,Uhrzeit FROM `userid_ga` WHERE DateEntered = '".$datum."' HAVING Summe > 2000 ORDER BY Uhrzeit DESC");
+     return $this->_db->select("SELECT UserId,Summe,Uhrzeit FROM `userid_ga` WHERE DateEntered = '".$datum."' AND UserId!='0000000000000000' AND Uhrzeit>20 HAVING Summe > 2000 ORDER BY Summe DESC");
    }
    public function all_UserId_to_WebsiteId(){
      return $this->_db->select("SELECT UserId,WebsiteId,Hour(DateEntered) as Hour,date(DateEntered) as DateEntered,COUNT(*) as Summe FROM ga GROUP BY UserId,WebsiteId,Hour(DateEntered),date(DateEntered) HAVING COUNT(*) > 500 ORDER BY COUNT(*) DESC");

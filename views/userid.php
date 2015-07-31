@@ -29,12 +29,12 @@ if(!sizeof($data['datum_files'])){
              echo
              '<tbody>
                 <tr>';
-								if($key['UserId']!='0000000000000000' && $key['Uhrzeit']>20){
+								//if($key['UserId']!='0000000000000000' && $key['Uhrzeit']>20){
 									echo
                   '<td>'.$i.'</td>
                   <td><a href="'. DIR .'file/select_UserId?UserId='.$key['UserId'].'&Date='.$data['datum'].'">'.$key['UserId'].'</a></td>
                   <td>'.$key['Summe'].'</td>';
-								}
+								//}
 								echo
 								'</tr>
               </tbody>';
